@@ -6,4 +6,5 @@ scikit-learn
 xgboost
 shap[all]
 tqdm
+graphviz
 #-e .

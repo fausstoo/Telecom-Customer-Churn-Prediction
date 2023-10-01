@@ -65,3 +65,16 @@ def train_algorithms(models, X_train, y_train, X_test, y_test):
         print("- ROC & AUC Score: {:.4f}".format(model_test_roc_auc_score))
 
         print("=" * 35)
+        
+        
+
+#---------------------------------------------------------------------------
+#                           MODEL EVALUATION                               |
+#---------------------------------------------------------------------------
+def evaluate_model(true, predicted):
+    accuracy = accuracy_score(true, predicted)
+    precision_s = precision_score(true, predicted)
+    recall = recall_score(true, predicted)
+    roc_auc = roc_auc_score(true, predicted)
+    
+    return accuracy, precision_s, recall, roc_auc
