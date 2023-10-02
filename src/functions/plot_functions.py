@@ -477,49 +477,94 @@ def plot_scores(algorithms, scores, title, save_path=None):
 
 
 
-
 #---------------------------------------------------------------------------
-#             PLOT FEATURE IMPORTANCES GROUPED H BAR PLOTS                 |
+#                   PLOT PRECISION-RECALL CURVE PLOT                       |
 #---------------------------------------------------------------------------
-def plot_feature_importances(classifiers, X, save_path=None):
-    """
-    Plots feature importances for different classifiers.
+def plot_precision_recall_curve(y_true, y_scores, save_path=None):
+    precision, recall, thresholds = precision_recall_curve(y_true, y_scores)
 
-    Parameters:
-        classifiers (dict): A dictionary containing classifier names as keys and trained classifier objects as values.
-        X (pd.DataFrame): The input DataFrame with feature data.
-        save_path (str, optional): If provided, the plot will be saved at this location.
+    # Calculate Precision-Recall AUC
+    pr_auc = auc(recall, precision)
 
-    Returns:
-        matplotlib.pyplot: The Matplotlib object representing the generated plot.
-
-    Example:
-        classifiers = {'clf': clf_model, 'rf_classifier': rf_model, 'xgb_classifier': xgb_model}
-        X = pd.DataFrame(...)  # Your feature data
-        plot_feature_importances(classifiers, X, save_path='output_folder')
-    """
+    plt.figure(figsize=(8, 6))
+    plt.plot(recall, precision, color='b', lw=2, label=f'Precision-Recall AUC = {pr_auc:.3f}')
+    plt.xlabel('Recall')
+    plt.ylabel('Precision')
+    plt.ylim([0.0, 1.05])
+    plt.xlim([0.0, 1.0])
+    plt.title('Precision-Recall Curve')
+    plt.grid()
+    plt.legend(loc='lower left')
     
-    dfs = []
-
-    for name, clf in classifiers.items():
-        feat_importances = pd.Series(clf.feature_importances_, index=X.columns).sort_values()
-        column_name = f'Feature Importance ({name})'
-        dfs.append(pd.DataFrame({column_name: feat_importances}))
-
-    # Ensure that index values are converted to strings
-    result_df = pd.concat(dfs, axis=1)
-
-    ax = result_df.plot(kind='barh', figsize=(10, 6), fontsize=12)
-    ax.set_xlabel('Feature Importance', fontsize=14)
-    ax.set_ylabel('Features', fontsize=14)
-    ax.set_title('Feature Importances for Different Classifiers', fontsize=16)
-    plt.tight_layout()
-
+    # Save figure
     if save_path:
-        # Create the directory if it doesn't exist 
-        os.makedirs(save_path, exist_ok=True)     
-        plot_filename = os.path.join(save_path, 'feature_importance_clrs_comparison.png')
-        plt.savefig(plot_filename)
+        os.makedirs(save_path, exist_ok=True)
+        precision_recall_curve_save_path = os.path.join(save_path, "precision_recall_curve.png")
+        plt.savefig(precision_recall_curve_save_path, bbox_inches='tight', dpi=300)
+    print(f"Saved at {save_path}")
 
+    return plt
+
+
+#---------------------------------------------------------------------------
+#                        PLOT ROC AUC CURVE PLOT                           |
+#---------------------------------------------------------------------------
+def plot_roc_auc_curve(y_true, y_scores, save_path=None):
+    # ROC AUC Curve
+    fpr, tpr, thresholds = roc_curve(y_true, y_scores)
+
+    # Calculate ROC AUC
+    roc_auc = roc_auc_score(y_true, y_scores)
+
+    # Plot
+    plt.figure(figsize=(8, 6))
+    plt.plot(fpr, tpr, color='darkorange', lw=2, label='ROC curve (area = {:.3f})'.format(roc_auc))
+    plt.plot([0, 1], [0, 1], color='navy', lw=2, linestyle='--')
+    plt.xlim([0.0, 1.0])
+    plt.ylim([0.0, 1.05])
+    plt.xlabel('False Positive Rate')
+    plt.ylabel('True Positive Rate')
+    plt.title('Receiver Operating Characteristic (ROC) Curve')
+    plt.legend(loc='lower right')
+    
+    # Save the plot
+    if save_path:
+        # Create the directory if it doesn't exist
+        os.makedirs(save_path, exist_ok=True)  
+        roc_auc_curve_save_path = os.path.join(save_path, "roc_auc_curve.png")
+        plt.savefig(roc_auc_curve_save_path, bbox_inches='tight', dpi=300)
+    print(f"Saved at {save_path}")
+    
+    return plt
+
+
+
+#---------------------------------------------------------------------------
+#                  PLOT FEATURE IMPORTANCES BAR PLOTS                      |
+#---------------------------------------------------------------------------
+def plot_feature_importances(clf_feature_importance, feature_names, save_path=None):
+    # Name of the classifier
+    clf_name = clf_feature_importance.__class__.__name__
+    
+    # Create a DataFrame to store feature names and importances
+    feature_importance_df = pd.DataFrame({'Feature': feature_names, 'Importance': clf_feature_importance})
+
+    # Sort the DataFrame by importance in descending order
+    feature_importance_df = feature_importance_df.sort_values(by='Importance', ascending=False)
+
+    # Create a bar plot to visualize feature importances
+    plt.figure(figsize=(10, 6))
+    plt.barh(feature_importance_df['Feature'], feature_importance_df['Importance'])
+    plt.xlabel('Importance')
+    plt.ylabel('Feature')
+    plt.title(f'Feature Importance for Churn Prediction - {clf_name}')
+    plt.gca().invert_yaxis()  # Invert the y-axis for better readability
+    
+    # Save plot
+    if save_path:
+        os.makedirs(save_path, exist_ok=True)
+        feature_importance_plot_save_path = os.path.join(save_path, "feature_importance.png")
+        plt.savefig(feature_importance_plot_save_path, bbox_inches="tight", dpi=300)
+    print(f"Saved at {save_path}")
 
     return plt
