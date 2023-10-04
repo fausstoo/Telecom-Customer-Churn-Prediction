@@ -7,4 +7,5 @@ xgboost
 shap[all]
 tqdm
 graphviz
+dill
 #-e .
