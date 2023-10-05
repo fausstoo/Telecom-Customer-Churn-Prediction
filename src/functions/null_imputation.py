@@ -11,7 +11,7 @@ class NullImputer(BaseEstimator, TransformerMixin):
         selected_cont_cols = continuous_cols.columns[continuous_cols.nunique() > 9]
 
         # Filter out categorical columns with cardinality < 9
-        categorical_cols = X.select_dtypes(include=['int64', 'object'])
+        categorical_cols = X.select_dtypes(include=['number', 'object'])
         selecte_cat_cols = categorical_cols.columns[categorical_cols.nunique() < 9]
 
         # Impute missing values in continuous columns with median

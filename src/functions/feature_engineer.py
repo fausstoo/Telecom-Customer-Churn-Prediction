@@ -32,6 +32,10 @@ class AgeBinning(BaseEstimator, TransformerMixin):
 
         # Create a new column 'age_category' with the age categories
         X['age_category'] = pd.cut(X['Age'], bins=bins, labels=labels, right=False)
+        
+        # Map age categories to numerical values
+        category_mapping = {'Young Adults': 1, 'Middle-age Adults': 2, 'Seniors': 3}
+        X['age_category'] = X['age_category'].map(category_mapping)
 
         return X
 

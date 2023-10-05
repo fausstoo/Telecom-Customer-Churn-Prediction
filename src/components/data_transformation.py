@@ -100,7 +100,7 @@ class DataTransformation:
             return (
                 train_arr,
                 test_arr,
-                # self.data_transformation_config.preprocessor_obj_file_path,
+                self.data_transformation_config.preprocessor_obj_file_path,
             )
             
         except Exception as e:
