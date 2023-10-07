@@ -1,6 +1,7 @@
 import os
 import sys
 from dataclasses import dataclass
+sys.path.append('/data/')
 
 import numpy as np
 import pandas as pd
@@ -17,6 +18,7 @@ from src.exception import CustomException
 from src.logger import logging
 
 
+
 @dataclass
 class DataTransformationConfig:
     preprocessor_obj_file_path: str = "./artifacts/preprocessor.pkl"
@@ -31,9 +33,9 @@ class DataTransformation:
         This functions is responsible of the data transformation"""
         
         try:
-            data = pd.read_pickle("/data/raw/customer_churn_dataset.pkl")
-            columns = [col for col in data.columns if col != 'Churn']
-            
+            df_c = pd.read_pickle("/data/raw/customer_churn_dataset.pkl")
+            columns = [column for column in df_c.columns if column != 'Churn']
+                            
             whole_pipeline = Pipeline(
                 steps=[
                     ("Null Imputation", NullImputer()),

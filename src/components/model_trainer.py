@@ -18,7 +18,7 @@ from src.utils import save_object
 
 @dataclass
 class ModelTrainerConfig:
-    trained_model_file_path: str ="./artifacts/model.pkl"
+    trained_model_file_path: str = "./artifacts/best_model.pkl"
     
 class ModelTrainer:
     def __init__(self):
@@ -35,36 +35,45 @@ class ModelTrainer:
             )
             
             models = {
-                "Decistion Tree Classifier": DecisionTreeClassifier(),
+                "Decission Tree Classifier": DecisionTreeClassifier(),
                 "Random Forest Classifier": RandomForestClassifier(),
-                "XGBoost": XGBClassifier()
+                "XGBClassifier": XGBClassifier()
             }
             
             param_grid = {
-                "Decision Tree Classifier": {
+                "Decission Tree Classifier": {
                     "max_depth": [None, 10, 20, 30],
                     "min_samples_split": [2, 5, 10],
                     "min_samples_leaf": [1, 2, 4],
                 },
-                "Random Forest": {
+                "Random Forest Classifier": {
                     "n_estimators": [50, 100, 150],
                     "max_depth": [None, 10, 20, 30],
                     "min_samples_split": [2, 5, 10],
                     "min_samples_leaf": [1, 2, 4],
                 },
-                "XGBoost": {
+                "XGBClassifier": {
                     "n_estimators": [50, 100, 150],
                     "max_depth": [3, 4, 5],
                     "learning_rate": [0.01, 0.1, 0.2],
                 }
             }
-                        
-            select_best_model(X_train=X_train,
-                              y_train=y_train,
-                              X_test=X_test,
-                              y_test=y_test,
-                              param_grid=param_grid,
-                              models=models)
             
+            logging.info("Best model selection started...")            
+            best_model = select_best_model(X_train=X_train,
+                                           y_train=y_train,
+                                           X_test=X_test,
+                                           y_test=y_test,
+                                           param_grid=param_grid,
+                                           models=models)
+            logging.info("Best model selection finished")
+            
+            logging.info("Saving the best model...")
+            save_object(
+                file_path=self.model_trainer_config.trained_model_file_path,
+                obj=best_model
+            )
+            logging.info(f"Model saved at {self.model_trainer_config.trained_model_file_path}")
+        
         except Exception as e:
             raise CustomException(e, sys)

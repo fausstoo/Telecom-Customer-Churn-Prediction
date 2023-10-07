@@ -1,3 +1,4 @@
+import os
 import sys
 sys.path.append('../src/functions')
 
@@ -24,7 +25,7 @@ from sklearn.model_selection import RandomizedSearchCV, cross_val_score
 import joblib
 
 from src.exception import CustomException
-
+from src.logger import logging
 
 #---------------------------------------------------------------------------
 #                 TRAINING, EVALUATION AND SAVE BEST MODEL                 |
@@ -52,24 +53,35 @@ def select_best_model(X_train, y_train, X_test, y_test, param_grid, models):
             else:
                 best_estimator = model
 
+            logging.info("Cross-validation started...")
             # Cross-validation
             scores = cross_val_score(best_estimator, X_train, y_train, cv=5, scoring="precision")
             mean_accuracy = scores.mean()
-
+            
+            
+            logging.info("Selecting the best model based on precision score")
             # Check if this model has the best mean accuracy so far
             if mean_accuracy > best_mean_accuracy:
                 best_mean_accuracy = mean_accuracy
                 best_model = best_estimator
+            logging.info("Best model finded")
 
+            logging.info("Training the best model...")
             # Train the best model
             best_estimator.fit(X_train, y_train)
+            logging.info("Model training finished")
 
-        # Now you have the best model based on mean accuracy
+        # Now you have the best model based on precision
         if best_model is not None:
+            
+            logging.info("Data prediction started...")
             # Make predictions
             y_train_pred = best_model.predict(X_train)
             y_test_pred = best_model.predict(X_test)
+            logging.info("Data prediction finished")
 
+            
+            logging.info("Model evaluation started...")
             # Evaluate Train and Test sets
             # Train set
             accuracy_train = accuracy_score(y_train, y_train_pred)
@@ -82,14 +94,19 @@ def select_best_model(X_train, y_train, X_test, y_test, param_grid, models):
             precision_score_test = precision_score(y_test, y_test_pred)
             recall_test = recall_score(y_test, y_test_pred)
             roc_auc_test = roc_auc_score(y_test, y_test_pred)
-
+            
+            logging.info("Model evaluation finished")
+            
             # Best model name
             best_model_name = best_model.__class__.__name__
-
-            # Save the best model to a file
-            best_model_filename = f"/artifacts/Models/{best_model_name}.pkl"
-            joblib.dump(best_model, best_model_filename)
-
+            
+            #logging.info("Saving the best model...")
+            ## Save the best model to a file
+            #best_model_filename = "/artifacts/models/best_model.pkl"
+            #os.makedirs(os.path.dirname(best_model_filename), exist_ok=True)  # Create the directory if it doesn't exist
+            #joblib.dump(best_model, best_model_filename)  # Save the model to the specified file
+            #logging.info("Saving process completed")
+            
             # Print results for the best model
             print("Best Model: {}".format(best_model_name))
             print("Mean Cross-Validation Accuracy: {:.4f}".format(best_mean_accuracy))
@@ -107,9 +124,12 @@ def select_best_model(X_train, y_train, X_test, y_test, param_grid, models):
             print("- Precision Score: {:.4f}".format(precision_score_test))
             print("- Recall Score: {:.4f}".format(recall_test))
             print("- ROC & AUC Score: {:.4f}".format(roc_auc_test))
-            
+    
     except Exception as e:
-        raise CustomException(e,sys)        
+        raise CustomException(e,sys)    
+        
+    print(best_mean_accuracy)
+    return best_model
         
     
     

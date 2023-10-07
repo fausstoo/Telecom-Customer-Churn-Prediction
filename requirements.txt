@@ -8,4 +8,5 @@ shap[all]
 tqdm
 graphviz
 dill
+flask
 #-e .
