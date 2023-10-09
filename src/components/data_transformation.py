@@ -11,7 +11,7 @@ from sklearn.pipeline import Pipeline
 
 from src.functions.modeling import *
 from src.functions.null_imputation import NullImputer
-from src.functions.feature_engineer import *
+from src.functions.feature_engineer import FeatureEngineer
 from src.utils import save_object
 
 from src.exception import CustomException
@@ -21,7 +21,7 @@ from src.logger import logging
 
 @dataclass
 class DataTransformationConfig:
-    preprocessor_obj_file_path: str = "./artifacts/preprocessor.pkl"
+    preprocessor_obj_file_path: str = "./artifacts/flask/flask_preprocessor.pkl"
     
 class DataTransformation:
     def __init__(self):
@@ -33,17 +33,13 @@ class DataTransformation:
         This functions is responsible of the data transformation"""
         
         try:
-            df_c = pd.read_pickle("/data/raw/customer_churn_dataset.pkl")
+            df_c = pd.read_pickle("./data/raw/customer_churn_dataset.pkl")
             columns = [column for column in df_c.columns if column != 'Churn']
                             
             whole_pipeline = Pipeline(
                 steps=[
                     ("Null Imputation", NullImputer()),
-                    ("Age Binning", AgeBinning()),
-                    ("Binary Features", BinaryFeatures()),
-                    ("Interaction Features", InteractionFeatures()),
-                    ("Feature Scaler", FeatureScaler()),
-                    ("Drop Unnecessary Columns", DropColumns())
+                    ("Feature Engineer", FeatureEngineer())
                 ]
             )
             

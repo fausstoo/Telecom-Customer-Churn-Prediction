@@ -1,9 +1,14 @@
 import sys
 
+sys.path.append('../artifacts')
+
+sys.path.append('../data')
+
 import pandas as pd
 
 from src.exception import CustomException
 from src.utils import load_object
+import pickle
 
 
 class PredictPipeline:
@@ -12,10 +17,10 @@ class PredictPipeline:
     
     def predict(self, features):
         try:
-            model_path = "./artifacts/Models/RandomForestClassifier.pkl"
-            preprocessor_path = "./artifacts/preprocessor.pkl"
-            model = load_object(file_path=model_path)
-            preprocessor = load_object(file_path=preprocessor_path)
+            #model_path = "../../artifacts/best_model.pkl"
+            #preprocessor_path = "../../artifacts/preprocessor.pkl"
+            model = load_object("./artifacts/best_model.pkl")
+            preprocessor = load_object("./artifacts/flask/flask_preprocessor.pkl")
             data_scaled = preprocessor.transform(features)
             preds = model.predict(data_scaled)
             
@@ -26,7 +31,6 @@ class PredictPipeline:
         
 class CustomData:
     def __init__(self,
-       CustomerID: float,
        Age: float,
        Gender: object,
        Tenure: float,
@@ -38,7 +42,6 @@ class CustomData:
        Total_Spend: float,
        Last_Interaction: float
     ):
-        self.CustomerID = CustomerID
         self.Age = Age
         self.Gender = Gender
         self.Tenure = Tenure
@@ -53,21 +56,23 @@ class CustomData:
         
     def get_data_as_data_frame(self):
         try:
-            custom_data_input_dict = {
-                'CustomerID': [self.CustomerID],       
+            custom_data_input_dict = {   
                 'Age': [self.Age],
                 'Gender': [self.Gender],
                 'Tenure': [self.Tenure],
-                'Usage_Frequency': [self.Usage_Frequency],
-                'Support_Calls': [self.Support_Calls],
-                'Payment_Delay': [self.Payment_Delay],
-                'Subscription_Type': [self.Subscription_Type],
-                'Contract_Length': [self.Contract_Length],
-                'Total_Spend': [self.Total_Spend],
-                'Last_Interaction': [self.Last_Interaction]
+                'Usage Frequency': [self.Usage_Frequency],
+                'Support Calls': [self.Support_Calls],
+                'Payment Delay': [self.Payment_Delay],
+                'Subscription Type': [self.Subscription_Type],
+                'Contract Length': [self.Contract_Length],
+                'Total Spend': [self.Total_Spend],
+                'Last Interaction': [self.Last_Interaction]
             }
             
             return pd.DataFrame(custom_data_input_dict)
         
         except Exception as e:
             raise CustomException(e, sys)
+        
+        
+        

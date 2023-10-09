@@ -1,6 +1,10 @@
 import os
 import sys
 
+sys.path.append('../artifacts')
+
+sys.path.append('../data')
+
 import numpy as np
 import pandas as pd
 import dill

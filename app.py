@@ -1,6 +1,13 @@
+import sys
+
 from flask import Flask, request, render_template
 import numpy as np
 import pandas as pd
+
+
+sys.path.append('../artifacts')
+
+sys.path.append('../data')
 
 
 from sklearn.preprocessing import StandardScaler
@@ -20,20 +27,21 @@ def index():
 @app.route('/predictdata', methods=['GET', 'POST'])
 def predict_datapoint():
     if request.method == 'GET':
-        return render_template('home.html')
+        # Clear previous result when initially displaying the form
+        results = None
+        return render_template('home.html', results=results)
     else:
         data = CustomData(
-            CustomerID = int(request.form.get("CustomerID")),
-            Age = int(request.form.get("Age")),
+            Age = float(request.form.get("Age")),
             Gender = request.form.get("Gender"), 
-            Tenure = int(request.form.get("Tenure")),
-            Usage_Frequency = int(request.form.get("Usage_Frequency")),
-            Support_Calls = int(request.form.get("Support_Calls")),
-            Payment_Delay = int(request.form.get("Payment_Delay")),
-            Subscription_Type = request.form.get("Subscription_Type"),
-            Contract_Length = request.form.get("Contract_Length"),
-            Total_Spend = int(request.form.get("Total_Spend")),
-            Last_Interaction = int(request.form.get("Last_Interaction"))
+            Tenure = float(request.form.get("Tenure")),
+            Usage_Frequency = float(request.form.get("Usage Frequency")),
+            Support_Calls = float(request.form.get("Support Calls")),
+            Payment_Delay = float(request.form.get("Payment Delay")),
+            Subscription_Type = request.form.get("Subscription Type"),
+            Contract_Length = request.form.get("Contract Length"),
+            Total_Spend = float(request.form.get("Total Spend")),
+            Last_Interaction = float(request.form.get("Last Interaction"))
         )
         pred_df = data.get_data_as_data_frame()
         print(pred_df)
