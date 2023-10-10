@@ -4,7 +4,7 @@
 **Project Overview**
 This project aims to predict customer churn in a telecom company, providing insights and solutions to improve customer retention. The dataset used can be found at: https://www.kaggle.com/datasets/muhammadshahidazeem/customer-churn-dataset. 
 
-Key highlights include: \
+Key highlights include: 
 - Data exploration to uncover patterns and features influencing customer churn.
 - Feature engineering to create predictive indicators.
 - Machine learning model development and evaluation.
