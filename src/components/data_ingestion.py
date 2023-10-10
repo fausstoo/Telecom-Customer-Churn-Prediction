@@ -32,7 +32,7 @@ class DataIngestion:
         logging.info("Data ingestion process initiated")
         
         try:
-            df = pd.read_pickle("./data/raw/customer_churn_dataset2.pkl")
+            df = pd.read_pickle("./data/raw/customer_churn_dataset.pkl")
             logging.info("Dataset readed as Data Frame")
             
             os.makedirs(os.path.dirname(self.ingestion_config.raw_data_path), exist_ok=True)

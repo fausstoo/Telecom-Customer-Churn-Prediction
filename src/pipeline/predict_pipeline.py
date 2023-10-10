@@ -20,7 +20,7 @@ class PredictPipeline:
             #model_path = "../../artifacts/best_model.pkl"
             #preprocessor_path = "../../artifacts/preprocessor.pkl"
             model = load_object("./artifacts/best_model.pkl")
-            preprocessor = load_object("./artifacts/flask/flask_preprocessor.pkl")
+            preprocessor = load_object("./artifacts/preprocessor.pkl")
             data_scaled = preprocessor.transform(features)
             preds = model.predict(data_scaled)
             

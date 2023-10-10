@@ -21,7 +21,7 @@ from src.logger import logging
 
 @dataclass
 class DataTransformationConfig:
-    preprocessor_obj_file_path: str = "./artifacts/flask/flask_preprocessor.pkl"
+    preprocessor_obj_file_path: str = "./artifacts/preprocessor.pkl"
     
 class DataTransformation:
     def __init__(self):

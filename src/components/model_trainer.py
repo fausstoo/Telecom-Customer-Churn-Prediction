@@ -41,22 +41,24 @@ class ModelTrainer:
             }
             
             param_grid = {
-                "Decission Tree Classifier": {
+                "Decision Tree Classifier": {
                     "max_depth": [None, 10, 20, 30],
                     "min_samples_split": [2, 5, 10],
                     "min_samples_leaf": [1, 2, 4],
                 },
-                "Random Forest Classifier": {
+                "Random Forest": {
                     "n_estimators": [50, 100, 150],
                     "max_depth": [None, 10, 20, 30],
                     "min_samples_split": [2, 5, 10],
                     "min_samples_leaf": [1, 2, 4],
                 },
-                "XGBClassifier": {
+                "XGBoost": {
                     "n_estimators": [50, 100, 150],
                     "max_depth": [3, 4, 5],
                     "learning_rate": [0.01, 0.1, 0.2],
-                }
+                    "min_child_weight": [1, 2],
+                    "subsample": [0.8, 0.9]
+                },
             }
             
             logging.info("Best model selection started...")            
