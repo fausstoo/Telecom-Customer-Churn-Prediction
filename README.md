@@ -39,16 +39,32 @@ This project includes a Flask application, app.py, which allows users to interac
 ---
 Step-by-step guide on how to pull and use the Flask application: 
 1. Initialize Git \
-   ```git init```
+   ```bash
+   git init
+   ```
+   
 3. Clone the Repository: \
-   ```git clone https://github.com/fausstoo/Telecom-Customer-Churn-Prediction.git```
-4. Install Dependencies: \
-   ```pip install -r requirements.txt```
-5. Start the Application: \
-   ```python app.py```
-6. Access the Application: \
-   ```http://127.0.0.1:5000/predictdata```
-7. Input Customer Data: \
+   ```bash
+   git clone https://github.com/fausstoo/Telecom-Customer-Churn-Prediction.git
+   ```
+   
+5. Install Dependencies: \
+   ```bash
+   pip install -r requirements.txt
+   ```
+   
+7. Start the App: \
+   ```bash
+   python app.py
+   ```
+   
+9. Access the App: \
+   ```bash
+   http://127.0.0.1:5000/predictdata
+   ```
+   
+11. Input Customer Data: \
 On the home page, you'll find a form where you can input customer data. Fill out the form with relevant customer information, such as age, support calls, payment delays, and spending.
-8. Get Predictions: \
+
+12. Get Predictions: \
 After submitting the data, the application will utilize the trained machine learning model to predict customer churn. The prediction result will be displayed on the screen.
