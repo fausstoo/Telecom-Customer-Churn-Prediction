@@ -1,7 +1,7 @@
 #### **Telecom Customer Churn Prediction**
 #### Author: **Fausto Pucheta Fortin**
 
-#### **Table of Contents**
+#### <ins>**Table of Contents**</ins>
 ***
 - [Project Overview](#Project-Overview)
 - [Key Highlights](#Key-Highlights)
@@ -32,8 +32,8 @@ This project includes a Flask application, app.py, which allows users to interac
 #### **Run Locally**
 ***
 Step-by-step guide on how to pull and use the Flask application: 
-1. Initialize Git
-   `git init`{:.ruby}
+1. Initialize Git \
+   ```git init```
 3. Clone the Repository: \
 ```git clone https://github.com/fausstoo/Telecom-Customer-Churn-Prediction.git```
 4. Install Dependencies: \
