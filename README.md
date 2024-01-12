@@ -33,7 +33,7 @@ This project includes a Flask application, app.py, which allows users to interac
 ***
 Step-by-step guide on how to pull and use the Flask application: 
 1. Initialize Git
-   ```git init```
+   `git init`{:.ruby}
 3. Clone the Repository: \
 ```git clone https://github.com/fausstoo/Telecom-Customer-Churn-Prediction.git```
 4. Install Dependencies: \
