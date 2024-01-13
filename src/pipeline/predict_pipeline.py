@@ -19,7 +19,7 @@ class PredictPipeline:
         try:
             #model_path = "../../artifacts/best_model.pkl"
             #preprocessor_path = "../../artifacts/preprocessor.pkl"
-            model = load_object("./artifacts/best_model.pkl")
+            model = load_object("./artifacts/xgboost_classifier.pkl")
             preprocessor = load_object("./artifacts/preprocessor.pkl")
             data_scaled = preprocessor.transform(features)
             preds = model.predict(data_scaled)
