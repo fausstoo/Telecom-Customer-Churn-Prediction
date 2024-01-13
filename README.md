@@ -12,12 +12,20 @@
 
 #### **Business Context**
 ---
-This project aims to predict customer churn in a telecom company, providing insights and solutions to improve customer retention. The dataset used can be found at: https://www.kaggle.com/datasets/muhammadshahidazeem/customer-churn-dataset. 
+Customer retention is critical for sustained business growth. Understanding and predicting customer churn can significantly impact strategic decision-making and resource allocation. This project aims to enhance our ability to foresee and mitigate customer churn by leveraging advanced analytics and machine learning.
 
 
 #### **Project Overview**
 ---
-This project includes a Flask application, app.py, which allows users to interact with the machine learning model for customer churn prediction.
+- This project addresses Telecom Customer Churn Prediction. The analysis encompasses extensive exploratory data analysis (EDA), including univariate and multivariate analyses.
+- Key findings from EDA inform subsequent feature engineering in the Feature_Engineer notebook. The process involves binning, creating new binary features, interaction features, and scaling.
+-  Following this, the Modeling_&_Evaluation notebook applies Decision Tree, Random Forest, and XGBoost algorithms. The XGBoost model emerges as the best performer, achieving high precision and ROC AUC.
+-  The top three influential features identified are 'high_support_calls,' 'low_spender,' and 'high_payment_delay.' 
+- Finally, the creation of a Flask application is included to make live predictions using the model trained previously.
+
+The Flask application app.py allows users to interact with the trained model for live customer churn prediction.
+![Untitled_Project_V1](https://github.com/fausstoo/Telecom-Customer-Churn-Prediction/assets/59534169/9d0ba389-91ae-4612-965e-576227772f69)
+
 
 
 #### **Key Highlights**
@@ -44,33 +52,43 @@ This project includes a Flask application, app.py, which allows users to interac
 #### **Run Locally**
 ---
 Step-by-step guide on how to pull and use the Flask application: 
-1. Initialize Git \
+1. Initialize Git 
    ```bash
    git init
    ```
    
-3. Clone the Repository: \
+2. Clone the Repository: 
    ```bash
    git clone https://github.com/fausstoo/Telecom-Customer-Churn-Prediction.git
    ```
    
-5. Install Dependencies: \
+3. Create environment
+```bash
+conda create -n <env_name> python=<python_version> -y
+```
+
+4. Activate environment
+```bash
+conda activate <env_name>
+```
+
+5. Install Dependencies: 
    ```bash
    pip install -r requirements.txt
    ```
    
-7. Start the App: \
+6. Start the App: 
    ```bash
    python app.py
    ```
    
-9. Access the App: \
+7. Access the App: 
    ```bash
    http://127.0.0.1:5000/predictdata
    ```
    
-11. Input Customer Data: \
+8. Input Customer Data: 
 On the home page, you'll find a form where you can input customer data. Fill out the form with relevant customer information, such as age, support calls, payment delays, and spending.
 
-12. Get Predictions: \
+9. Get Predictions: 
 After submitting the data, the application will utilize the trained machine learning model to predict customer churn. The prediction result will be displayed on the screen.
