@@ -5,6 +5,7 @@
 #### <u>**Table of Contents**</u>
 ---
 - [Project Overview](#Project-Overview)
+- [Project Structure](#Project-Structure)
 - [Key Highlights](#Key-Highlights)
 - [Model Characteristics](#Model-Characteristics)
 - [Run Locally](#Run-Locally)
@@ -27,6 +28,102 @@ The Flask application app.py allows users to interact with the trained model for
 ![Untitled_Project_V1](https://github.com/fausstoo/Telecom-Customer-Churn-Prediction/assets/59534169/9d0ba389-91ae-4612-965e-576227772f69)
 
 
+#### **Project Structure** 
+---
+fausstoo/telecom-customer-churn-prediction \
+│ \
+├── /artifacts \
+|   ├── /flask \
+|   |  └── /flask_preprocessor.pkl \
+|   ├── /Models \
+|   |  ├── /.gitattributes \
+|   |  └── /RandomForestClassifier.pkl \
+|   ├── /preprocessor.pkl \
+|   └── /xgboost_classifier.pkl \
+| \
+├── /data \
+│   ├── /external \
+|   |  ├── /.gitkeep \
+|   |  └── /.customer_churn_dataset.pkl \
+│   ├── /processed \
+|   |  ├── /test_df \
+|   |  |  ├── /X_test.pkl \
+|   |  |  └── /y_test.pkl \
+|   |  ├── /train_df \
+|   |  |  ├── /X_train.pkl \
+|   |  |  └── /y_train.pkl \
+|   |  ├── /validation_df \
+|   |  |  ├── /X_val.pkl \
+|   |  |  └── /y_val.pkl \
+|   |  ├── /.gitkeep \
+|   |  ├── /features_df.pkl \
+|   |  ├── /imputed_df.pkl \
+|   |  └── /modeling_df.pkl \
+│   └── /raw \
+|     ├── /.gitkeep \
+|     ├── /archive.zip \
+|     ├── /customer_churn_dataset-test.pkl \
+|     ├── /customer_churn_dataset-train.pkl \
+|     └── /customer_churn_dataset.pkl \
+│ \
+├── /logs \
+│ \
+├── /notebooks \
+│   ├── /.gitkeep \
+│   ├── /code_test.py \
+│   ├── /EDA_01.ipynb \
+│   ├── /EDA_02.ipynb \
+│   ├── /Feature_Engineer.ipynb \
+│   └── /Modeling_&_Evaluation.ipynb \
+│ \
+├── /reports \
+│   ├── /figures \
+│   ├── /EDA_01 \
+│   ├── /EDA_02 \
+│   ├── /Feature_Engineer \
+│   └── /Modeling_&_Evaluation \ 
+| \
+├── /src \
+│   ├── /components \
+│   │   ├── /__init__.py \
+│   │   ├── /data_ingestion.py \
+│   │   ├── /data_transformation.py \
+│   │   ├── /model_trainer.py \
+│   | \
+│   ├── /functions \
+|   │   ├── /pycache \
+|   │   ├── /feature_engineer.py \
+|   │   ├── /modeling.py \
+|   │   ├── /null_imputation.py \
+|   │   ├── /outliers_removal.py \
+|   │   ├── /plot_functions.py \
+|   │   ├── /tabular_report_functions.py \
+|   | \
+│   ├── /pipeline \
+|   │   ├── /pycache \
+|   │   ├── /__init__.py \
+|   │   ├── /predict_pipeline.py \
+|   │   ├── /train_pipeline.py \
+│   ├── /visualizations \
+|   │   ├── .gitkeep \
+|   │   ├── /__init__.py \
+|   │   ├── /visualize_EDA_1.py \
+|   │   ├── /visualize_EDA_2.py \
+|   │   ├── /visualize_Feature_Engineer.py \
+│   ├── /__init__.py \
+│   ├── /utils.py \
+│   ├── /exception.py \
+│   └── /login.py \
+│ \
+├── /templates \
+│   ├── /home.html \
+│   └── /index.html \
+├── .gitattributes \
+├── .gitignore \
+├── app.py \
+├── setup.py \
+├── requirements.txt \
+└── README.md 
 
 #### **Key Highlights**
 ---
