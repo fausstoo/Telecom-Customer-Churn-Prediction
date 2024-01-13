@@ -34,37 +34,37 @@ fausstoo/telecom-customer-churn-prediction \
 │ \
 ├── /artifacts \
 |   ├── /flask \
-|   |  └── /flask_preprocessor.pkl \
+|   |   └── /flask_preprocessor.pkl \
 |   ├── /Models \
-|   |  ├── /.gitattributes \
-|   |  └── /RandomForestClassifier.pkl \
+|   |   ├── /.gitattributes \
+|   |   └── /RandomForestClassifier.pkl \
 |   ├── /preprocessor.pkl \
 |   └── /xgboost_classifier.pkl \
 | \
 ├── /data \
 │   ├── /external \
-|   |  ├── /.gitkeep \
-|   |  └── /.customer_churn_dataset.pkl \
+|   |   ├── /.gitkeep \
+|   |   └── /.customer_churn_dataset.pkl \
 │   ├── /processed \
-|   |  ├── /test_df \
-|   |  |  ├── /X_test.pkl \
-|   |  |  └── /y_test.pkl \
-|   |  ├── /train_df \
-|   |  |  ├── /X_train.pkl \
-|   |  |  └── /y_train.pkl \
-|   |  ├── /validation_df \
-|   |  |  ├── /X_val.pkl \
-|   |  |  └── /y_val.pkl \
-|   |  ├── /.gitkeep \
-|   |  ├── /features_df.pkl \
-|   |  ├── /imputed_df.pkl \
-|   |  └── /modeling_df.pkl \
+|   |   ├── /test_df \
+|   |   |   ├── /X_test.pkl \
+|   |   |   └── /y_test.pkl \
+|   |   ├── /train_df \
+|   |   |   ├── /X_train.pkl \
+|   |   |   └── /y_train.pkl \
+|   |   ├── /validation_df \
+|   |   |   ├── /X_val.pkl \
+|   |   |   └── /y_val.pkl \
+|   |   ├── /.gitkeep \
+|   |   ├── /features_df.pkl \
+|   |   ├── /imputed_df.pkl \
+|   |   └── /modeling_df.pkl \
 │   └── /raw \
-|     ├── /.gitkeep \
-|     ├── /archive.zip \
-|     ├── /customer_churn_dataset-test.pkl \
-|     ├── /customer_churn_dataset-train.pkl \
-|     └── /customer_churn_dataset.pkl \
+|      ├── /.gitkeep \
+|      ├── /archive.zip \
+|      ├── /customer_churn_dataset-test.pkl \
+|      ├── /customer_churn_dataset-train.pkl \
+|      └── /customer_churn_dataset.pkl \
 │ \
 ├── /logs \
 │ \
