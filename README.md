@@ -144,7 +144,7 @@ fausstoo/telecom-customer-churn-prediction\
 ---
 - The model for this project is an XGBoostClassifier, and it was chosen by iterating and experimenting with *RandomizedSearchCV*, *Cross-validation*, and *Hyperparameter tuning*.
 - It delivers high precision and a strong ROC AUC score. (**0.928** for Precision-Recall Curve and **0.920** for ROC Curve)
-- 
+  
 ![roc_auc_curve](https://github.com/fausstoo/Telecom-Customer-Churn-Prediction/assets/59534169/1643e6ec-db6a-433b-ad8a-9420208590bc)
 
 ![precision_recall_curve](https://github.com/fausstoo/Telecom-Customer-Churn-Prediction/assets/59534169/b9f7ea54-aa8a-4a3c-a8d6-814ed63e3e0a)
