@@ -4,6 +4,7 @@
 
 #### <u>**Table of Contents**</u>
 ---
+-[Business Context](#Business-Context)
 - [Project Overview](#Project-Overview)
 - [Project Structure](#Project-Structure)
 - [Key Highlights](#Key-Highlights)
@@ -134,10 +135,10 @@ fausstoo/telecom-customer-churn-prediction\
 
 #### **Key Highlights**
 ---
-- Exploratory data analysis to uncover patterns and features influencing customer churn.
-- Feature engineering and selection to create predictive indicators.
-- Model training and selection based on Precision Score using Randomized Search CV, Cross-Validation, and Hyperparameter tuning.
-- Feature importance analysis for further iterations.
+- Exploratory data analysis to uncover patterns and features influencing customer churn. *EDA_01.ipynb & EDA_02.ipynb notebooks*
+- Feature engineering and selection to create predictive indicators. *Feature_Engineer.ipynb*
+- Model training and selection based on Precision Score using Randomized Search CV, Cross-Validation, and Hyperparameter tuning. *model_trainer.py*
+- Feature importance analysis for further iterations. *Modeling_&_Evaluation.ipynb*
 
 
 #### **Model Characteristics**
@@ -155,7 +156,8 @@ fausstoo/telecom-customer-churn-prediction\
 
 #### **Run Locally**
 ---
-Step-by-step guide on how to pull and use the Flask application: 
+You can interact with the trained algorithm Flask app by following these steps: 
+
 1. Initialize Git 
    ```bash
    git init
