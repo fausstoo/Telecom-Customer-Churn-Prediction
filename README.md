@@ -4,7 +4,7 @@
 
 #### <u>**Table of Contents**</u>
 ---
--[Business Context](#Business-Context)
+- [Business Context](#Business-Context)
 - [Project Overview](#Project-Overview)
 - [Project Structure](#Project-Structure)
 - [Key Highlights](#Key-Highlights)
